@@ -1,0 +1,23 @@
+Import mysql.connector
+Mydb= mysql.connector.connect(host=”localhost”,user=”root”,passwd=”Rachel3007rajan”,database=”favmovies”)
+Mycursor=mydb.cursor()
+Mycursor.execute(“CREATE TABLE Movies_List(Name VARCHAR(50),Actor VARCHAR(50),Actress VARCHAR(50),Director VARCHAR(50),Year_of_release INT NOT NULL,PRIMARY KEY(Name))”)
+Sql = “INSERT INTO Movies_List (Name, Actor, Actress,Director,Year_of_release) VALUES (%s, %s, %s, %s, %s)”
+Val = [
+  (‘The Godfather',’Al Pacino’,’ Diane Keaton’,’ Francis Ford Coppola’,1972),
+  (‘The Shawshank Redemption’,’Tim Robbins’,’Clancy Brown’,’Frank Darabont,1994),
+(‘Harry Potter : Prizoner of Azkaban’,’Daniel Radcliffe',’Emma Watson’,’Alfonso Cuaron’,2004),
+  (‘The Dark Knight’,’Heath Ledger’,’Anne Hathway',’Christopher Nolan’,2008),
+(‘Harry Potter and the Half Blood Prince’,’Daniel Radcliffe',’Emma Watson’,’David Yates’,2009),,
+  (‘CID MOOSA’,’Dileep’,’Bahavana’,’Johny Antony’,2003),
+  (‘The Lord of the Rings:FOTR’,’ Elijah Wood’,’Cate Blanchett',’Peter Jackson’,2001),
+  (‘Forrest Gump’,’Tom Hanks’,’Robin Wright’,’Robert Zemeckis',1994)
+Mydb.commit()
+Print(mycursor.rowcount, “Contents inserted.”)
+Mycursor.execute(“ SELECT * FROM Movies_List”)
+For I in mycursor:
+    Print(i)
+Mycursor.execute(“SELECT Name,Actor FROM Movies_List ORDER BY Actor”)
+For j in mycursor:
+    Print(j)
+Mydb.close()
